@@ -1,7 +1,8 @@
+'use client'
 import { InlineWidget } from 'react-calendly';
 import Head from 'next/head';
 
-export function BookingForm() {
+ function BookingForm() {
   return (
     <>
       <Head>
@@ -23,7 +24,7 @@ export function BookingForm() {
         {/* Calendly Widget Section */}
         <div className="mt-10 w-full max-w-4xl bg-white shadow-lg rounded-lg p-6">
           <InlineWidget
-            url="https://calendly.com/totaltouchsolutions25"
+            url="https://calendly.com/your-username/consultation"
             styles={{
               height: '600px',
               width: '100%',
@@ -33,4 +34,5 @@ export function BookingForm() {
       </main>
     </>
   );
-}
+} 
+export default BookingForm 

@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import { motion } from 'framer-motion';
 
-export function Services() {
+ function Services() {
   return (
     <>
       <Head>
@@ -108,3 +108,4 @@ export function Services() {
     </>
   );
 }
+export default Services
