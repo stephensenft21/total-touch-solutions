@@ -51,7 +51,7 @@ export default function Home() {
           <h2 className="text-2xl font-semibold">Professional Cleaning Services</h2>
           <p className="mt-4">We offer Residential and Commercial Cleaning Services tailored to your needs.</p>
           <Link href="/booking">
-            <StyledButton className="mt-5 bg-[#BF5FAB] text-white py-2 px-5 rounded-lg shadow-lg">Book a Consultation</StyledButton>
+            <StyledButton className="mt-5 bg-[#BF5FAB] text-white py-2 px-5 rounded-lg shadow-lg" text={"Book a Consultation"}></StyledButton>
           </Link>
         </motion.section>
 
