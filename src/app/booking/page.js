@@ -24,7 +24,7 @@ import Head from 'next/head';
         {/* Calendly Widget Section */}
         <div className="mt-10 w-full max-w-4xl bg-white shadow-lg rounded-lg p-6">
           <InlineWidget
-            url="https://calendly.com/your-username/consultation"
+            url="https://calendly.com/totaltouchsolutions25"
             styles={{
               height: '600px',
               width: '100%',
