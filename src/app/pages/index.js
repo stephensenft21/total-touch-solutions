@@ -2,12 +2,12 @@
 import Head from 'next/head';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { StyledButton } from '../app/components /Button';
-import About from '../app/about /page';
-import {BookingForm} from '../app/components /BookingForm';
-import Services from './service/page';
-import ContactForm from '../app/components /ContactForm'
-
+import { Button } from '@radix-ui/react-button';
+import { TextField } from '@radix-ui/react-text-field';
+import { useState } from 'react';
+import About from './about';
+import Booking from '../booking/page';
+import Services from '../service/page';
 
 export default function Home() {
   return (
@@ -51,7 +51,7 @@ export default function Home() {
           <h2 className="text-2xl font-semibold">Professional Cleaning Services</h2>
           <p className="mt-4">We offer Residential and Commercial Cleaning Services tailored to your needs.</p>
           <Link href="/booking">
-            <StyledButton className="mt-5 bg-[#BF5FAB] text-white py-2 px-5 rounded-lg shadow-lg">Book a Consultation</StyledButton>
+            <Button className="mt-5 bg-[#BF5FAB] text-white py-2 px-5 rounded-lg shadow-lg">Book a Consultation</Button>
           </Link>
         </motion.section>
 
@@ -60,7 +60,7 @@ export default function Home() {
         </section>
 
         <section className="mt-10">
-          <BookingForm />
+          <Booking />
         </section>
 
         <section className="mt-10">
@@ -72,7 +72,57 @@ export default function Home() {
           <ContactForm />
         </section>
       </main>
+      <footer className="bg-[#303030] text-white text-center p-4 mt-10">
+        <p>&copy; 2025 Total Touch Solutions. All Rights Reserved.</p>
+      </footer>
     </>
   );
 }
 
+function ContactForm() {
+  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    alert(`Thank you ${formData.name}, we will get back to you soon!`);
+  };
+
+  return (
+    <form onSubmit={handleSubmit} className="mt-5 space-y-4">
+      <TextField.Root className="block w-full">
+        <TextField.Input 
+          type="text" 
+          name="name" 
+          placeholder="Your Name" 
+          className="block w-full p-2 border rounded" 
+          onChange={handleChange} 
+          required
+        />
+      </TextField.Root>
+      <TextField.Root className="block w-full">
+        <TextField.Input 
+          type="email" 
+          name="email" 
+          placeholder="Your Email" 
+          className="block w-full p-2 border rounded" 
+          onChange={handleChange} 
+          required
+        />
+      </TextField.Root>
+      <TextField.Root className="block w-full">
+        <TextField.Input 
+          asChild
+          placeholder="Your Message"
+          className="block w-full p-2 border rounded"
+        >
+          <textarea name="message" onChange={handleChange} required></textarea>
+        </TextField.Input>
+      </TextField.Root>
+      <Button type="submit" className="bg-[#BF5FAB] text-white py-2 px-5 rounded-lg shadow-lg">Submit</Button>
+    </form>
+  );
+}
