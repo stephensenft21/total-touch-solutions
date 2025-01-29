@@ -2,111 +2,111 @@
 import Link from "next/link";
 import Image from "next/image";
 import myImage from "../../../public/logo.jpg";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import React, { useState } from "react";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <>
-      <motion.header
-        className="bg-[#BF5FAB] text-white shadow-lg"
-        initial={{ opacity: 0, y: -50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
-      >
-        <div className="container mx-auto flex justify-between items-center py-4 px-6">
-          {/* Logo */}
-        <Link href="/">
-        
-         <Image
-            src={myImage} // Ensure logo.svg is in /public
-            alt="Total Touch Solutions Logo"
-            width={50} // Adjust width
-            height={50} // Adjust height
-            className="h-12 w-auto"
-            priority
-          /> </Link> 
-          <motion.div
-            className="text-2xl font-bold"
+    <motion.header
+      className="bg-gray-900 text-white py-6 px-8 shadow-md"
+      initial={{ opacity: 0, y: -50 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+    >
+      <div className="container mx-auto flex justify-between items-center">
+        {/* Logo and Company Name */}
+        <div className="flex items-center space-x-3">
+          <Link href="/">
+            <Image
+              src={myImage}
+              alt="Total Touch Solutions Logo"
+              width={50}
+              height={50}
+              className="h-12 w-auto"
+              priority
+            />
+          </Link>
+          <motion.h1
+            className="text-xl font-bold"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2 }}
           >
-          </motion.div>
-
-          {/* Hamburger Menu */}
-          <div className="block md:hidden">
-            <button
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="focus:outline-none"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d={
-                    isMenuOpen
-                      ? "M6 18L18 6M6 6l12 12"
-                      : "M4 6h16M4 12h16M4 18h16"
-                  }
-                />
-              </svg>
-            </button>
-          </div>
-
-          {/* Navigation */}
-          <nav
-            className={`${
-              isMenuOpen ? "block" : "hidden"
-            } md:block absolute md:static top-16 left-0 w-full md:w-auto bg-[#BF5FAB] md:bg-transparent z-50`}
-          >
-            <ul className="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-6 py-4 md:py-0">
-              <motion.li whileHover={{ scale: 1.1 }}>
-                <Link
-                  href="/services"
-                  className="hover:text-gray-200 transition-all"
-                >
-                  Services
-                </Link>
-              </motion.li>
-              <motion.li whileHover={{ scale: 1.1 }}>
-                <Link
-                  href="/about"
-                  className="hover:text-gray-200 transition-all"
-                >
-                  About
-                </Link>
-              </motion.li>
-              <motion.li whileHover={{ scale: 1.1 }}>
-                <Link
-                  href="/contact"
-                  className="hover:text-gray-200 transition-all"
-                >
-                  Contact
-                </Link>
-              </motion.li>
-              <motion.li whileHover={{ scale: 1.1 }}>
-                <Link
-                  href="/booking"
-                  className="hover:text-gray-200 transition-all"
-                >
-                  Book Now
-                </Link>
-              </motion.li>
-            </ul>
-          </nav>
+            Total Touch Solutions
+          </motion.h1>
         </div>
-      </motion.header>
-    </>
+
+        {/* Desktop Navigation */}
+        <nav className="hidden md:flex space-x-6">
+          {["Services", "About", "Contact", "Book Now"].map((item, index) => (
+            <motion.div key={index} whileHover={{ scale: 1.1 }}>
+              <Link
+                href={`/${item.toLowerCase().replace(" ", "")}`}
+                className="hover:text-[#BF5FAB] transition-all"
+              >
+                {item}
+              </Link>
+            </motion.div>
+          ))}
+        </nav>
+
+        {/* Mobile Menu Button */}
+        <button
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          className="md:hidden focus:outline-none"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d={
+                isMenuOpen
+                  ? "M6 18L18 6M6 6l12 12"
+                  : "M4 6h16M4 12h16M4 18h16"
+              }
+            />
+          </svg>
+        </button>
+      </div>
+
+      {/* Mobile Navigation */}
+      <AnimatePresence>
+        {isMenuOpen && (
+          <motion.div
+            className="absolute top-16 left-0 w-full bg-gray-900 text-white shadow-md md:hidden"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.3 }}
+          >
+            <ul className="flex flex-col items-center space-y-4 py-4">
+              {["Services", "About", "Contact", "Book Now"].map(
+                (item, index) => (
+                  <motion.li key={index} whileHover={{ scale: 1.1 }}>
+                    <Link
+                      href={`/${item.toLowerCase().replace(" ", "")}`}
+                      className="hover:text-[#BF5FAB] transition-all"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      {item}
+                    </Link>
+                  </motion.li>
+                )
+              )}
+            </ul>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.header>
   );
 };
 

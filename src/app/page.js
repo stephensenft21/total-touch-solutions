@@ -22,52 +22,6 @@ export default function Home() {
         />
       </Head>
 
-      {/* Header */}
-      <header className="bg-gray-900 text-white py-6 px-8 shadow-md">
-        <div className="container mx-auto flex justify-between items-center">
-          {/* Logo & Title */}
-          <Link href="/" className="flex items-center space-x-3">
-            {/* Title */}
-            <motion.h1
-              className="text-3xl font-extrabold"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 1 }}
-            >
-              Total Touch Solutions
-            </motion.h1>
-          </Link>
-
-          {/* Navigation */}
-          <nav className="hidden md:flex space-x-6">
-            <Link
-              href="/services"
-              className="hover:text-[#BF5FAB] transition duration-300"
-            >
-              Services
-            </Link>
-            <Link
-              href="/booking"
-              className="hover:text-[#BF5FAB] transition duration-300"
-            >
-              Book a Consultation
-            </Link>
-            <Link
-              href="/about"
-              className="hover:text-[#BF5FAB] transition duration-300"
-            >
-              About Us
-            </Link>
-            <Link
-              href="/contact"
-              className="hover:text-[#BF5FAB] transition duration-300"
-            >
-              Contact
-            </Link>
-          </nav>
-        </div>
-      </header>
-
       {/* Main Content */}
       <main className="bg-gray-100 text-gray-800 py-10 px-6 md:px-16 lg:px-24">
         {/* Company Overview */}
@@ -100,7 +54,7 @@ export default function Home() {
           </p>
           <Link href="/booking">
             <StyledButton
-              className="mt-6 bg-[#BF5FAB] text-white py-3 px-6 rounded-lg shadow-lg hover:bg-[#9b4d92] transition-all"
+              className="mt-16 pt-4 bg-[#BF5FAB] text-white py-3 px-6 rounded-lg shadow-lg hover:bg-[#9b4d92] transition-all"
               text={"Book a Consultation"}
             />
           </Link>
