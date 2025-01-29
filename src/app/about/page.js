@@ -1,10 +1,33 @@
 "use client";
 import Head from "next/head";
+import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 
 function About() {
   const router = useRouter();
+
+  // Fix smooth scrolling using useEffect
+  useEffect(() => {
+    const scrollButton = document.getElementById("scroll-button");
+
+    const scrollToSection = () => {
+      const section = document.getElementById("mission-section");
+      if (section) {
+        section.scrollIntoView({ behavior: "smooth" });
+      }
+    };
+
+    if (scrollButton) {
+      scrollButton.addEventListener("click", scrollToSection);
+    }
+
+    return () => {
+      if (scrollButton) {
+        scrollButton.removeEventListener("click", scrollToSection);
+      }
+    };
+  }, []);
 
   return (
     <>
@@ -30,8 +53,8 @@ function About() {
               At Total Touch Solutions, we’re committed to enhancing your quality of life by offering high-quality services tailored to meet your unique needs.
             </p>
             <button
+              id="scroll-button" // Unique ID for event listener
               className="mt-6 bg-[#BF5FAB] text-white px-6 py-3 rounded-full shadow-lg hover:bg-[#9b4d92] transition-all"
-              onClick={() => document.getElementById("mission-section").scrollIntoView({ behavior: "smooth" })}
             >
               Learn More About Our Mission
             </button>

@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { StyledButton } from "../app/components /Button";
-import About from "./about /page";
+import About from "./About/page";
 import { BookingForm } from "../app/components /BookingForm";
 import Services from "./services/page";
 
